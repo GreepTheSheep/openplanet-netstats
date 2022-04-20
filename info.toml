@@ -2,14 +2,8 @@
 name = "Net Stats"
 author = "Greep"
 category = "Utilities"
-perms = "paid"
 
-version = "1.0"
+version = "0.1"
 
 [script]
-imports = [ "Permissions.as" ]
-optional_dependencies = [ "BetterChat" ]
-
-exports = [ "src/Exports/Exports.as" ]
-
 timeout = 0
