@@ -28,8 +28,8 @@ namespace SettingsStatusText
     [Setting name="Show Framerate" category="Status Text"]
     bool showFps = true;
 
-    [Setting name="Framerate digits" category="Status Text"]
-    int fpsDigits = 0;
+    [Setting name="Framerate decimals" category="Status Text"]
+    int fpsDecimals = 0;
 
     [Setting name="Show Ping" category="Status Text"]
     bool showPing = true;
@@ -37,8 +37,8 @@ namespace SettingsStatusText
     [Setting name="Show Packet Loss Rate" category="Status Text"]
     bool showPacketLoss = true;
 
-    [Setting name="Packet Loss Rate digits" category="Status Text"]
-    int packetLossDigits = 0;
+    [Setting name="Packet Loss Rate decimals" category="Status Text"]
+    int packetLossDecimals = 0;
 
     [Setting name="Show Download Rate" category="Status Text"]
     bool showDownloadRate = false;

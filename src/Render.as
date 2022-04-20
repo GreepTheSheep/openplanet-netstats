@@ -28,10 +28,10 @@ class Rendering
         nvg::FontSize(SettingsStatusText::fontSize);
         nvg::TextAlign(SettingsStatusText::textAlign | nvg::Align::Middle);
         array<string> texts;
-        if (SettingsStatusText::showFps) texts.InsertLast(Text::Format("%."+tostring(SettingsStatusText::fpsDigits)+"f", g_client.Framerate) + " FPS");
+        if (SettingsStatusText::showFps) texts.InsertLast(Text::Format("%."+tostring(SettingsStatusText::fpsDecimals)+"f", g_client.Framerate) + " FPS");
         if (g_server.isOnServer) {
             if (SettingsStatusText::showPing) texts.InsertLast("Ping: " + tostring(g_server.Ping) + "ms");
-            if (SettingsStatusText::showPacketLoss) texts.InsertLast("Packet Loss: " + Text::Format("%."+tostring(SettingsStatusText::packetLossDigits)+"f", g_server.PacketLossRate) + "%");
+            if (SettingsStatusText::showPacketLoss) texts.InsertLast("Packet Loss: " + Text::Format("%."+tostring(SettingsStatusText::packetLossDecimals)+"f", g_server.PacketLossRate) + "%");
             if (SettingsStatusText::showDownloadRate) {
                 uint downloadRate = g_server.TotalRecvSize;
                 switch (SettingsStatusText::rateUnit) {
