@@ -1,0 +1,15 @@
+[meta]
+name = "Net Stats"
+author = "Greep"
+category = "Utilities"
+perms = "paid"
+
+version = "1.0"
+
+[script]
+imports = [ "Permissions.as" ]
+optional_dependencies = [ "BetterChat" ]
+
+exports = [ "src/Exports/Exports.as" ]
+
+timeout = 0
