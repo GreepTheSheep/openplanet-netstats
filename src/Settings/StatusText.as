@@ -7,11 +7,14 @@ namespace SettingsStatusText
     [Setting name="Text Alignment" category="Status Text"]
     TextAlign textAlign = TextAlign::Right;
 
-    [Setting name="Anchor X position" min=0 max=1 category="Status Text"]
-    float anchorX = 1;
+    [Setting name="Locator Mode" category="Status Text"]
+    bool locatorMode = false;
 
-    [Setting name="Anchor Y position" min=0 max=1 category="Status Text"]
-    float anchorY = .01;
+    [Setting name="Position" category="Status Text"]
+    vec2 position = vec2(1, .01);
+
+    [Setting hidden]
+    vec2 stringSize = vec2(0, 0);
 
     [Setting name="Font size" min=8 max=72 category="Status Text"]
     int fontSize = 18;

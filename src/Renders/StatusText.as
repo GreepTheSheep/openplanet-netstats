@@ -1,29 +1,11 @@
-class Rendering
+namespace RenderStatusText
 {
 
-    float cachedHeight;
+    float GetWidth() {return SettingsStatusText::position.x * Draw::GetWidth();}
 
-    Rendering()
-    {
-        this.UpdateCachedHeight();
-    }
+    float GetHeight() {return SettingsStatusText::position.y * Draw::GetHeight();}
 
-    void UpdateCachedHeight()
-    {
-        cachedHeight = SettingsStatusText::anchorY;
-    }
-
-    float GetWidth()
-    {
-        return SettingsStatusText::anchorX * Draw::GetWidth() - 100;
-    }
-
-    float GetHeight()
-    {
-        return SettingsStatusText::anchorY * Draw::GetHeight();
-    }
-
-    void RenderStatusText()
+    void Render()
     {
         nvg::FontSize(SettingsStatusText::fontSize);
         nvg::TextAlign(SettingsStatusText::textAlign | nvg::Align::Middle);
@@ -59,6 +41,7 @@ class Rendering
         }
 
         string text = string::Join(texts, " "+SettingsStatusText::Separator+" ");
+        SettingsStatusText::stringSize = Draw::MeasureString(text, null, SettingsStatusText::fontSize);
 
         nvg::FillColor(SettingsStatusText::fontColor);
         nvg::Text(GetWidth(), GetHeight(), text);
