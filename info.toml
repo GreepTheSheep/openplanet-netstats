@@ -2,6 +2,7 @@
 name = "Net Stats"
 author = "Greep"
 category = "Utilities"
+siteid = 192
 
 version = "0.1"
 
