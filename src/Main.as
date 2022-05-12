@@ -1,10 +1,13 @@
 Server@ g_server;
 Client@ g_client;
 
+Graph@ g_fpsGraph;
+
 void Main()
 {
     @g_server = Server();
     @g_client = Client();
+    @g_fpsGraph = Graph("FPS");
 }
 
 void RenderMenu() {
@@ -28,6 +31,15 @@ void Update(float dt)
 void Render()
 {
     if (SettingsStatusText::showRender) RenderStatusText::Render();
+
+    if (SettingsGraphs::showRender) {
+        if (SettingsGraphs::showFps) {
+            g_fpsGraph.showValueText = SettingsGraphs::displayFpsValue;
+            g_fpsGraph.useHostogram = SettingsGraphs::displayFpsHistogram;
+            g_fpsGraph.valueTextDecimals = SettingsGraphs::fpsDecimals;
+            g_fpsGraph.Render(g_client.Framerate);
+        }
+    }
 }
 
 void RenderInterface()
