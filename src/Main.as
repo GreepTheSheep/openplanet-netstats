@@ -26,8 +26,39 @@ void Main()
 void RenderMenu() {
     if (UI::BeginMenu("\\$ca0" + Icons::LineChart + "\\$z Net Stats"))
     {
-        if (UI::MenuItem("Show Text", "", SettingsStatusText::showRender)) {
-            SettingsStatusText::showRender = !SettingsStatusText::showRender;
+        if (UI::BeginMenu("Text"))
+        {
+            if (UI::MenuItem("Show Text", "", SettingsStatusText::showRender))
+                SettingsStatusText::showRender = !SettingsStatusText::showRender;
+            UI::Separator();
+            if (UI::MenuItem("FPS", "", SettingsStatusText::showFps))
+                SettingsStatusText::showFps = !SettingsStatusText::showFps;
+            if (UI::MenuItem("Ping", "", SettingsStatusText::showPing))
+                SettingsStatusText::showPing = !SettingsStatusText::showPing;
+            if (UI::MenuItem("Packet Loss", "", SettingsStatusText::showPacketLoss))
+                SettingsStatusText::showPacketLoss = !SettingsStatusText::showPacketLoss;
+            if (UI::MenuItem("Download Rate", "", SettingsStatusText::showDownloadRate))
+                SettingsStatusText::showDownloadRate = !SettingsStatusText::showDownloadRate;
+            if (UI::MenuItem("Upload Rate", "", SettingsStatusText::showUploadRate))
+                SettingsStatusText::showUploadRate = !SettingsStatusText::showUploadRate;
+            UI::EndMenu();
+        }
+        if (UI::BeginMenu("Graphs"))
+        {
+            if (UI::MenuItem("Show Graphs", "", SettingsGraphs::showRender))
+                SettingsGraphs::showRender = !SettingsGraphs::showRender;
+            UI::Separator();
+            if (UI::MenuItem("FPS", "", SettingsGraphs::showFps))
+                SettingsGraphs::showFps = !SettingsGraphs::showFps;
+            if (UI::MenuItem("Ping", "", SettingsGraphs::showPing))
+                SettingsGraphs::showPing = !SettingsGraphs::showPing;
+            if (UI::MenuItem("Packet Loss", "", SettingsGraphs::showPacketLoss))
+                SettingsGraphs::showPacketLoss = !SettingsGraphs::showPacketLoss;
+            if (UI::MenuItem("Download Rate", "", SettingsGraphs::showDownloadRate))
+                SettingsGraphs::showDownloadRate = !SettingsGraphs::showDownloadRate;
+            if (UI::MenuItem("Upload Rate", "", SettingsGraphs::showUploadRate))
+                SettingsGraphs::showUploadRate = !SettingsGraphs::showUploadRate;
+            UI::EndMenu();
         }
         UI::EndMenu();
     }
