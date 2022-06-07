@@ -41,7 +41,6 @@ namespace RenderStatusText
         }
 
         string text = string::Join(texts, " "+SettingsStatusText::Separator+" ");
-        SettingsStatusText::stringSize = Draw::MeasureString(text, null, SettingsStatusText::fontSize);
 
         nvg::FillColor(SettingsStatusText::fontColor);
         nvg::Text(GetWidth(), GetHeight(), text);
