@@ -5,13 +5,13 @@ namespace SettingsStatusText
 
     enum TextAlign { Left = 1, Center = 2, Right = 4 }
     [Setting name="Text Alignment" category="Status Text"]
-    TextAlign textAlign = TextAlign::Right;
+    TextAlign textAlign = TextAlign::Center;
 
     [Setting name="Locator Mode" category="Status Text"]
     bool locatorMode = false;
 
     [Setting name="Position" category="Status Text"]
-    vec2 position = vec2(1, .01);
+    vec2 position = vec2(.5, .02);
 
     [Setting hidden]
     vec2 stringSize = vec2(0, 0);
