@@ -28,36 +28,36 @@ void RenderMenu() {
     {
         if (UI::BeginMenu("Text"))
         {
-            if (UI::MenuItem("Show Text", "", SettingsStatusText::showRender))
-                SettingsStatusText::showRender = !SettingsStatusText::showRender;
+            if (UI::MenuItem("Show Text", "", SettingsStatusText::showRenderText))
+                SettingsStatusText::showRenderText = !SettingsStatusText::showRenderText;
             UI::Separator();
-            if (UI::MenuItem("FPS", "", SettingsStatusText::showFps))
-                SettingsStatusText::showFps = !SettingsStatusText::showFps;
-            if (UI::MenuItem("Ping", "", SettingsStatusText::showPing))
-                SettingsStatusText::showPing = !SettingsStatusText::showPing;
-            if (UI::MenuItem("Packet Loss", "", SettingsStatusText::showPacketLoss))
-                SettingsStatusText::showPacketLoss = !SettingsStatusText::showPacketLoss;
-            if (UI::MenuItem("Download Rate", "", SettingsStatusText::showDownloadRate))
-                SettingsStatusText::showDownloadRate = !SettingsStatusText::showDownloadRate;
-            if (UI::MenuItem("Upload Rate", "", SettingsStatusText::showUploadRate))
-                SettingsStatusText::showUploadRate = !SettingsStatusText::showUploadRate;
+            if (UI::MenuItem("FPS", "", SettingsStatusText::showFpsText))
+                SettingsStatusText::showFpsText = !SettingsStatusText::showFpsText;
+            if (UI::MenuItem("Ping", "", SettingsStatusText::showPingText))
+                SettingsStatusText::showPingText = !SettingsStatusText::showPingText;
+            if (UI::MenuItem("Packet Loss", "", SettingsStatusText::showPacketLossText))
+                SettingsStatusText::showPacketLossText = !SettingsStatusText::showPacketLossText;
+            if (UI::MenuItem("Download Rate", "", SettingsStatusText::showDownloadRateText))
+                SettingsStatusText::showDownloadRateText = !SettingsStatusText::showDownloadRateText;
+            if (UI::MenuItem("Upload Rate", "", SettingsStatusText::showUploadRateText))
+                SettingsStatusText::showUploadRateText = !SettingsStatusText::showUploadRateText;
             UI::EndMenu();
         }
         if (UI::BeginMenu("Graphs"))
         {
-            if (UI::MenuItem("Show Graphs", "", SettingsGraphs::showRender))
-                SettingsGraphs::showRender = !SettingsGraphs::showRender;
+            if (UI::MenuItem("Show Graphs", "", SettingsGraphs::showRenderGraphs))
+                SettingsGraphs::showRenderGraphs = !SettingsGraphs::showRenderGraphs;
             UI::Separator();
-            if (UI::MenuItem("FPS", "", SettingsGraphs::showFps))
-                SettingsGraphs::showFps = !SettingsGraphs::showFps;
-            if (UI::MenuItem("Ping", "", SettingsGraphs::showPing))
-                SettingsGraphs::showPing = !SettingsGraphs::showPing;
-            if (UI::MenuItem("Packet Loss", "", SettingsGraphs::showPacketLoss))
-                SettingsGraphs::showPacketLoss = !SettingsGraphs::showPacketLoss;
-            if (UI::MenuItem("Download Rate", "", SettingsGraphs::showDownloadRate))
-                SettingsGraphs::showDownloadRate = !SettingsGraphs::showDownloadRate;
-            if (UI::MenuItem("Upload Rate", "", SettingsGraphs::showUploadRate))
-                SettingsGraphs::showUploadRate = !SettingsGraphs::showUploadRate;
+            if (UI::MenuItem("FPS", "", SettingsGraphs::showFpsGraph))
+                SettingsGraphs::showFpsGraph = !SettingsGraphs::showFpsGraph;
+            if (UI::MenuItem("Ping", "", SettingsGraphs::showPingGraph))
+                SettingsGraphs::showPingGraph = !SettingsGraphs::showPingGraph;
+            if (UI::MenuItem("Packet Loss", "", SettingsGraphs::showPacketLossGraph))
+                SettingsGraphs::showPacketLossGraph = !SettingsGraphs::showPacketLossGraph;
+            if (UI::MenuItem("Download Rate", "", SettingsGraphs::showDownloadRateGraph))
+                SettingsGraphs::showDownloadRateGraph = !SettingsGraphs::showDownloadRateGraph;
+            if (UI::MenuItem("Upload Rate", "", SettingsGraphs::showUploadRateGraph))
+                SettingsGraphs::showUploadRateGraph = !SettingsGraphs::showUploadRateGraph;
             UI::EndMenu();
         }
         UI::EndMenu();
@@ -74,60 +74,60 @@ void Update(float dt)
 
 void Render()
 {
-    if (SettingsStatusText::showRender) RenderStatusText::Render();
+    if (SettingsStatusText::showRenderText) RenderStatusText::Render();
 
-    if (SettingsGraphs::showRender) {
-        if (SettingsGraphs::showFps) {
-            g_fpsGraph.showValueText = SettingsGraphs::displayFpsValue;
-            g_fpsGraph.useHistogram = SettingsGraphs::displayFpsHistogram;
-            g_fpsGraph.valueTextDecimals = SettingsGraphs::fpsDecimals;
-            g_fpsGraph.color = SettingsGraphs::displayFpsColor;
-            g_fpsGraph.backgroundAlpha = SettingsGraphs::displayFpsAlpha;
+    if (SettingsGraphs::showRenderGraphs) {
+        if (SettingsGraphs::showFpsGraph) {
+            g_fpsGraph.showValueText = SettingsGraphs::displayFpsValueGraph;
+            g_fpsGraph.useHistogram = SettingsGraphs::displayFpsHistogramGraph;
+            g_fpsGraph.valueTextDecimals = SettingsGraphs::fpsDecimalsGraph;
+            g_fpsGraph.color = SettingsGraphs::displayFpsColorGraph;
+            g_fpsGraph.backgroundAlpha = SettingsGraphs::displayFpsAlphaGraph;
             g_fpsGraph.Render(g_client.Framerate);
         }
 
         if (g_server.isOnServer) {
-            if (SettingsGraphs::showPing) {
-                g_pingGraph.showValueText = SettingsGraphs::displayPingValue;
-                g_pingGraph.useHistogram = SettingsGraphs::displayPingHistogram;
+            if (SettingsGraphs::showPingGraph) {
+                g_pingGraph.showValueText = SettingsGraphs::displayPingValueGraph;
+                g_pingGraph.useHistogram = SettingsGraphs::displayPingHistogramGraph;
                 g_pingGraph.valueTextDecimals = 0;
-                g_pingGraph.color = SettingsGraphs::displayPingColor;
-                g_pingGraph.backgroundAlpha = SettingsGraphs::displayPingAlpha;
+                g_pingGraph.color = SettingsGraphs::displayPingColorGraph;
+                g_pingGraph.backgroundAlpha = SettingsGraphs::displayPingAlphaGraph;
                 g_pingGraph.Render(g_server.Ping);
             }
 
-            if (SettingsGraphs::showPacketLoss) {
-                g_packetLossGraph.showValueText = SettingsGraphs::displayPacketLossValue;
-                g_packetLossGraph.useHistogram = SettingsGraphs::displayPacketLossHistogram;
+            if (SettingsGraphs::showPacketLossGraph) {
+                g_packetLossGraph.showValueText = SettingsGraphs::displayPacketLossValueGraph;
+                g_packetLossGraph.useHistogram = SettingsGraphs::displayPacketLossHistogramGraph;
                 g_packetLossGraph.valueTextDecimals = 0;
-                g_packetLossGraph.color = SettingsGraphs::displayPacketLossColor;
-                g_packetLossGraph.backgroundAlpha = SettingsGraphs::displayPacketLossAlpha;
+                g_packetLossGraph.color = SettingsGraphs::displayPacketLossColorGraph;
+                g_packetLossGraph.backgroundAlpha = SettingsGraphs::displayPacketLossAlphaGraph;
                 g_packetLossGraph.Render(g_server.PacketLossRate);
             }
 
-            if (SettingsGraphs::showDownloadRate) {
+            if (SettingsGraphs::showDownloadRateGraph) {
                 uint downloadRate = g_server.TotalRecvSize;
-                g_DLGraph.showValueText = SettingsGraphs::displayDLValue;
-                g_DLGraph.useHistogram = SettingsGraphs::displayDLHistogram;
+                g_DLGraph.showValueText = SettingsGraphs::displayDLValueGraph;
+                g_DLGraph.useHistogram = SettingsGraphs::displayDLHistogramGraph;
                 g_DLGraph.valueTextDecimals = 0;
-                g_DLGraph.color = SettingsGraphs::displayDLColor;
-                g_DLGraph.backgroundAlpha = SettingsGraphs::displayDLAlpha;
-                g_DLGraph.measure = SettingsGraphs::displayDLRateUnit+"/s";
-                if (SettingsGraphs::displayDLRateUnit == "KB") downloadRate = downloadRate / 1024;
-                else if (SettingsGraphs::displayDLRateUnit == "MB") downloadRate = downloadRate / (1024*1024);
+                g_DLGraph.color = SettingsGraphs::displayDLColorGraph;
+                g_DLGraph.backgroundAlpha = SettingsGraphs::displayDLAlphaGraph;
+                g_DLGraph.measure = SettingsGraphs::displayDLRateUnitGraph+"/s";
+                if (SettingsGraphs::displayDLRateUnitGraph == "KB") downloadRate = downloadRate / 1024;
+                else if (SettingsGraphs::displayDLRateUnitGraph == "MB") downloadRate = downloadRate / (1024*1024);
                 g_DLGraph.Render(downloadRate);
             }
 
-            if (SettingsGraphs::showUploadRate) {
+            if (SettingsGraphs::showUploadRateGraph) {
                 uint uploadRate = g_server.TotalSendSize;
-                g_ULGraph.showValueText = SettingsGraphs::displayULValue;
-                g_ULGraph.useHistogram = SettingsGraphs::displayULHistogram;
+                g_ULGraph.showValueText = SettingsGraphs::displayULValueGraph;
+                g_ULGraph.useHistogram = SettingsGraphs::displayULHistogramGraph;
                 g_ULGraph.valueTextDecimals = 0;
-                g_ULGraph.color = SettingsGraphs::displayULColor;
-                g_ULGraph.backgroundAlpha = SettingsGraphs::displayULAlpha;
-                g_ULGraph.measure = SettingsGraphs::displayULRateUnit+"/s";
-                if (SettingsGraphs::displayULRateUnit == "KB") uploadRate = uploadRate / 1024;
-                else if (SettingsGraphs::displayULRateUnit == "MB") uploadRate = uploadRate / (1024*1024);
+                g_ULGraph.color = SettingsGraphs::displayULColorGraph;
+                g_ULGraph.backgroundAlpha = SettingsGraphs::displayULAlphaGraph;
+                g_ULGraph.measure = SettingsGraphs::displayULRateUnitGraph+"/s";
+                if (SettingsGraphs::displayULRateUnitGraph == "KB") uploadRate = uploadRate / 1024;
+                else if (SettingsGraphs::displayULRateUnitGraph == "MB") uploadRate = uploadRate / (1024*1024);
                 g_ULGraph.Render(uploadRate);
             }
         }
@@ -136,9 +136,9 @@ void Render()
 
 void RenderInterface()
 {
-    if (SettingsStatusText::locatorMode) {
-        Locator::Render("Status text", SettingsStatusText::position, SettingsStatusText::stringSize);
-        SettingsStatusText::position = Locator::GetPos();
-		SettingsStatusText::stringSize = Locator::GetSize();
+    if (SettingsStatusText::locatorModeText) {
+        Locator::Render("Status text", SettingsStatusText::positionText, SettingsStatusText::stringSizeText);
+        SettingsStatusText::positionText = Locator::GetPos();
+		SettingsStatusText::stringSizeText = Locator::GetSize();
     }
 }

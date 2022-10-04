@@ -1,100 +1,100 @@
 namespace SettingsGraphs
 {
     [Setting hidden]
-    bool showRender = true;
+    bool showRenderGraphs = true;
 
     array<string> graphTypes = {"Line","Histogram"};
 
     array<string> RateUnit = {"Bytes", "KB", "MB"};
 
     [Setting hidden]
-    bool showFps = true;
+    bool showFpsGraph = true;
 
     [Setting hidden]
-    bool displayFpsValue = true;
+    bool displayFpsValueGraph = true;
 
     [Setting hidden]
-    int fpsDecimals = 0;
+    int fpsDecimalsGraph = 0;
 
     [Setting hidden]
-    bool displayFpsHistogram = false;
+    bool displayFpsHistogramGraph = false;
 
     [Setting hidden]
-    vec3 displayFpsColor = vec3(1,1,1);
+    vec3 displayFpsColorGraph = vec3(1,1,1);
 
     [Setting hidden]
-    float displayFpsAlpha = 0.0f;
+    float displayFpsAlphaGraph = 0.0f;
 
     [Setting hidden]
-    bool showPing = true;
+    bool showPingGraph = true;
 
     [Setting hidden]
-    bool displayPingValue = true;
+    bool displayPingValueGraph = true;
 
     [Setting hidden]
-    bool displayPingHistogram = false;
+    bool displayPingHistogramGraph = false;
 
     [Setting hidden]
-    vec3 displayPingColor = vec3(1,1,1);
+    vec3 displayPingColorGraph = vec3(1,1,1);
 
     [Setting hidden]
-    float displayPingAlpha = 0.0f;
+    float displayPingAlphaGraph = 0.0f;
 
     [Setting hidden]
-    bool showPacketLoss = true;
+    bool showPacketLossGraph = true;
 
     [Setting hidden]
-    bool displayPacketLossValue = true;
+    bool displayPacketLossValueGraph = true;
 
     [Setting hidden]
-    bool displayPacketLossHistogram = false;
+    bool displayPacketLossHistogramGraph = false;
 
     [Setting hidden]
-    vec3 displayPacketLossColor = vec3(1,1,1);
+    vec3 displayPacketLossColorGraph = vec3(1,1,1);
 
     [Setting hidden]
-    float displayPacketLossAlpha = 0.0f;
+    float displayPacketLossAlphaGraph = 0.0f;
 
     [Setting hidden]
-    bool showDownloadRate = false;
+    bool showDownloadRateGraph = false;
 
     [Setting hidden]
-    bool displayDLValue = true;
+    bool displayDLValueGraph = true;
 
     [Setting hidden]
-    bool displayDLHistogram = false;
+    bool displayDLHistogramGraph = false;
 
     [Setting hidden]
-    string displayDLRateUnit = RateUnit[0];
+    string displayDLRateUnitGraph = RateUnit[0];
 
     [Setting hidden]
-    vec3 displayDLColor = vec3(1,1,1);
+    vec3 displayDLColorGraph = vec3(1,1,1);
 
     [Setting hidden]
-    float displayDLAlpha = 0.0f;
+    float displayDLAlphaGraph = 0.0f;
 
     [Setting hidden]
-    bool showUploadRate = false;
+    bool showUploadRateGraph = false;
 
     [Setting hidden]
-    bool displayULValue = true;
+    bool displayULValueGraph = true;
 
     [Setting hidden]
-    bool displayULHistogram = false;
+    bool displayULHistogramGraph = false;
 
     [Setting hidden]
-    string displayULRateUnit = RateUnit[0];
+    string displayULRateUnitGraph = RateUnit[0];
 
     [Setting hidden]
-    vec3 displayULColor = vec3(1,1,1);
+    vec3 displayULColorGraph = vec3(1,1,1);
 
     [Setting hidden]
-    float displayULAlpha = 0.0f;
+    float displayULAlphaGraph = 0.0f;
 
 
     [SettingsTab name="Graphs"]
     void RenderGraphsSettings() {
-        showRender = UI::Checkbox("Show All Graphs", showRender);
+        showRenderGraphs = UI::Checkbox("Show All Graphs", showRenderGraphs);
         UI::Text("To move/resize graphs, the Openplanet overlay must be shown");
         UI::TextDisabled(Icons::InfoCircle + " Alpha setting are not affected when the overlay is shown");
         UI::Separator();
@@ -125,18 +125,18 @@ namespace SettingsGraphs
 
 
     void RenderFramerateGraphSettings() {
-        showFps = UI::Checkbox("Show Framerate graph", showFps);
-        displayFpsValue = UI::Checkbox("Display value text", displayFpsValue);
-        if (displayFpsValue) fpsDecimals = UI::SliderInt("Value decimals", fpsDecimals, 0, 3);
+        showFpsGraph = UI::Checkbox("Show Framerate graph", showFpsGraph);
+        displayFpsValueGraph = UI::Checkbox("Display value text", displayFpsValueGraph);
+        if (displayFpsValueGraph) fpsDecimalsGraph = UI::SliderInt("Value decimals", fpsDecimalsGraph, 0, 3);
 
-        string framerateTypeSetting = displayFpsHistogram ? graphTypes[1] : graphTypes[0];
+        string framerateTypeSetting = displayFpsHistogramGraph ? graphTypes[1] : graphTypes[0];
         if (UI::BeginCombo("Graph type", framerateTypeSetting)){
             for (uint i = 0; i < graphTypes.Length; i++) {
                 string type = graphTypes[i];
 
                 if (UI::Selectable(type, framerateTypeSetting == type)) {
                     framerateTypeSetting = type;
-                    displayFpsHistogram = framerateTypeSetting == graphTypes[1];
+                    displayFpsHistogramGraph = framerateTypeSetting == graphTypes[1];
                 }
 
                 if (framerateTypeSetting == type) {
@@ -146,22 +146,22 @@ namespace SettingsGraphs
             UI::EndCombo();
         }
 
-        displayFpsColor = UI::InputColor3("Color", displayFpsColor);
-        displayFpsAlpha = UI::SliderFloat("Graph alpha", displayFpsAlpha, 0.0f, 1.0f);
+        displayFpsColorGraph = UI::InputColor3("Color", displayFpsColorGraph);
+        displayFpsAlphaGraph = UI::SliderFloat("Graph alpha", displayFpsAlphaGraph, 0.0f, 1.0f);
     }
 
     void RenderPingGraphSettings() {
-        showPing = UI::Checkbox("Show Ping graph", showPing);
-        displayPingValue = UI::Checkbox("Display value text", displayPingValue);
+        showPingGraph = UI::Checkbox("Show Ping graph", showPingGraph);
+        displayPingValueGraph = UI::Checkbox("Display value text", displayPingValueGraph);
 
-        string pingTypeSetting = displayPingHistogram ? graphTypes[1] : graphTypes[0];
+        string pingTypeSetting = displayPingHistogramGraph ? graphTypes[1] : graphTypes[0];
         if (UI::BeginCombo("Graph type", pingTypeSetting)){
             for (uint i = 0; i < graphTypes.Length; i++) {
                 string type = graphTypes[i];
 
                 if (UI::Selectable(type, pingTypeSetting == type)) {
                     pingTypeSetting = type;
-                    displayPingHistogram = pingTypeSetting == graphTypes[1];
+                    displayPingHistogramGraph = pingTypeSetting == graphTypes[1];
                 }
 
                 if (pingTypeSetting == type) {
@@ -171,22 +171,22 @@ namespace SettingsGraphs
             UI::EndCombo();
         }
 
-        displayPingColor = UI::InputColor3("Color", displayPingColor);
-        displayPingAlpha = UI::SliderFloat("Graph alpha", displayPingAlpha, 0.0f, 1.0f);
+        displayPingColorGraph = UI::InputColor3("Color", displayPingColorGraph);
+        displayPingAlphaGraph = UI::SliderFloat("Graph alpha", displayPingAlphaGraph, 0.0f, 1.0f);
     }
 
     void RenderPacketLossGraphSettings() {
-        showPacketLoss = UI::Checkbox("Show PacketLoss graph", showPacketLoss);
-        displayPacketLossValue = UI::Checkbox("Display value text", displayPacketLossValue);
+        showPacketLossGraph = UI::Checkbox("Show PacketLoss graph", showPacketLossGraph);
+        displayPacketLossValueGraph = UI::Checkbox("Display value text", displayPacketLossValueGraph);
 
-        string packetLossTypeSetting = displayPacketLossHistogram ? graphTypes[1] : graphTypes[0];
+        string packetLossTypeSetting = displayPacketLossHistogramGraph ? graphTypes[1] : graphTypes[0];
         if (UI::BeginCombo("Graph type", packetLossTypeSetting)){
             for (uint i = 0; i < graphTypes.Length; i++) {
                 string type = graphTypes[i];
 
                 if (UI::Selectable(type, packetLossTypeSetting == type)) {
                     packetLossTypeSetting = type;
-                    displayPacketLossHistogram = packetLossTypeSetting == graphTypes[1];
+                    displayPacketLossHistogramGraph = packetLossTypeSetting == graphTypes[1];
                 }
 
                 if (packetLossTypeSetting == type) {
@@ -196,37 +196,37 @@ namespace SettingsGraphs
             UI::EndCombo();
         }
 
-        displayPacketLossColor = UI::InputColor3("Color", displayPacketLossColor);
-        displayPacketLossAlpha = UI::SliderFloat("Graph alpha", displayPacketLossAlpha, 0.0f, 1.0f);
+        displayPacketLossColorGraph = UI::InputColor3("Color", displayPacketLossColorGraph);
+        displayPacketLossAlphaGraph = UI::SliderFloat("Graph alpha", displayPacketLossAlphaGraph, 0.0f, 1.0f);
     }
 
     void RenderDLGraphSettings() {
-        showDownloadRate = UI::Checkbox("Show Download Rate graph", showDownloadRate);
-        displayDLValue = UI::Checkbox("Display value text", displayDLValue);
+        showDownloadRateGraph = UI::Checkbox("Show Download Rate graph", showDownloadRateGraph);
+        displayDLValueGraph = UI::Checkbox("Display value text", displayDLValueGraph);
 
-        if (UI::BeginCombo("Rate unit", displayDLRateUnit)){
+        if (UI::BeginCombo("Rate unit", displayDLRateUnitGraph)){
             for (uint i = 0; i < RateUnit.Length; i++) {
                 string type = RateUnit[i];
 
-                if (UI::Selectable(type, displayDLRateUnit == type)) {
-                    displayDLRateUnit = type;
+                if (UI::Selectable(type, displayDLRateUnitGraph == type)) {
+                    displayDLRateUnitGraph = type;
                 }
 
-                if (displayDLRateUnit == type) {
+                if (displayDLRateUnitGraph == type) {
                     UI::SetItemDefaultFocus();
                 }
             }
             UI::EndCombo();
         }
 
-        string framerateTypeSetting = displayDLHistogram ? graphTypes[1] : graphTypes[0];
+        string framerateTypeSetting = displayDLHistogramGraph ? graphTypes[1] : graphTypes[0];
         if (UI::BeginCombo("Graph type", framerateTypeSetting)){
             for (uint i = 0; i < graphTypes.Length; i++) {
                 string type = graphTypes[i];
 
                 if (UI::Selectable(type, framerateTypeSetting == type)) {
                     framerateTypeSetting = type;
-                    displayDLHistogram = framerateTypeSetting == graphTypes[1];
+                    displayDLHistogramGraph = framerateTypeSetting == graphTypes[1];
                 }
 
                 if (framerateTypeSetting == type) {
@@ -236,37 +236,37 @@ namespace SettingsGraphs
             UI::EndCombo();
         }
 
-        displayDLColor = UI::InputColor3("Color", displayDLColor);
-        displayDLAlpha = UI::SliderFloat("Graph alpha", displayDLAlpha, 0.0f, 1.0f);
+        displayDLColorGraph = UI::InputColor3("Color", displayDLColorGraph);
+        displayDLAlphaGraph = UI::SliderFloat("Graph alpha", displayDLAlphaGraph, 0.0f, 1.0f);
     }
 
     void RenderULGraphSettings() {
-        showUploadRate = UI::Checkbox("Show Upload Rate graph", showUploadRate);
-        displayULValue = UI::Checkbox("Display value text", displayULValue);
+        showUploadRateGraph = UI::Checkbox("Show Upload Rate graph", showUploadRateGraph);
+        displayULValueGraph = UI::Checkbox("Display value text", displayULValueGraph);
 
-        if (UI::BeginCombo("Rate unit", displayULRateUnit)){
+        if (UI::BeginCombo("Rate unit", displayULRateUnitGraph)){
             for (uint i = 0; i < RateUnit.Length; i++) {
                 string type = RateUnit[i];
 
-                if (UI::Selectable(type, displayULRateUnit == type)) {
-                    displayULRateUnit = type;
+                if (UI::Selectable(type, displayULRateUnitGraph == type)) {
+                    displayULRateUnitGraph = type;
                 }
 
-                if (displayULRateUnit == type) {
+                if (displayULRateUnitGraph == type) {
                     UI::SetItemDefaultFocus();
                 }
             }
             UI::EndCombo();
         }
 
-        string framerateTypeSetting = displayULHistogram ? graphTypes[1] : graphTypes[0];
+        string framerateTypeSetting = displayULHistogramGraph ? graphTypes[1] : graphTypes[0];
         if (UI::BeginCombo("Graph type", framerateTypeSetting)){
             for (uint i = 0; i < graphTypes.Length; i++) {
                 string type = graphTypes[i];
 
                 if (UI::Selectable(type, framerateTypeSetting == type)) {
                     framerateTypeSetting = type;
-                    displayULHistogram = framerateTypeSetting == graphTypes[1];
+                    displayULHistogramGraph = framerateTypeSetting == graphTypes[1];
                 }
 
                 if (framerateTypeSetting == type) {
@@ -276,7 +276,7 @@ namespace SettingsGraphs
             UI::EndCombo();
         }
 
-        displayULColor = UI::InputColor3("Color", displayULColor);
-        displayULAlpha = UI::SliderFloat("Graph alpha", displayULAlpha, 0.0f, 1.0f);
+        displayULColorGraph = UI::InputColor3("Color", displayULColorGraph);
+        displayULAlphaGraph = UI::SliderFloat("Graph alpha", displayULAlphaGraph, 0.0f, 1.0f);
     }
 }
